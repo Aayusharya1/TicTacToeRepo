@@ -4,10 +4,15 @@ namespace TicTacToe
 {
     class TicTacToeGame
     {
-        public char[] board = new char[10];
+     
         static void Main(string[] args)
         {
-            
+            char[] board = new char[10];
+
+            for (int i=1;i<10;i++) 
+            {
+                board[i] = ' ';
+            }
         }
     }
 }
