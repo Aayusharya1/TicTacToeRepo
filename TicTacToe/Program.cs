@@ -10,6 +10,10 @@ namespace TicTacToe
             char[] board;
 
             board = Createboard();
+            Console.WriteLine("moving to choose x/o");
+            char userletter = Choosexoro();
+            Console.WriteLine("Printing board starting.....");
+            PrintingTheBoard(board);
         }
 
         private static char[] Createboard()
@@ -23,14 +27,24 @@ namespace TicTacToe
             return board;
         }
 
-        private void Choosexoro()
+        private static char Choosexoro()
         {
-            char compOption;
-            char playerOption = Convert.ToChar(Console.ReadLine());
-            if (playerOption == 'x')   compOption = 'o'; 
-            else compOption = 'x';
-        
+            char userletter = Convert.ToChar(Console.ReadLine());
+            return userletter;
 
+        }
+
+        private static void PrintingTheBoard(char[] board)
+        {
+            Console.WriteLine("Printing the board......");
+
+            for (int i = 1; i < 10; i++)
+            {
+                Console.Write(board[i]);
+                Console.Write(" ");
+                if (i % 3 == 0) Console.WriteLine("");
+
+            }
         }
     }
 }
