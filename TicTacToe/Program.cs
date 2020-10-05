@@ -14,6 +14,8 @@ namespace TicTacToe
             char userletter = Choosexoro();
             Console.WriteLine("Printing board starting.....");
             PrintingTheBoard(board);
+            Move(board, userletter);
+
         }
 
         private static char[] Createboard()
@@ -45,6 +47,15 @@ namespace TicTacToe
                 if (i % 3 == 0) Console.WriteLine("");
 
             }
+        }
+
+        private static void Move(char[] board, char letter) 
+        {
+            int position = Convert.ToInt32(Console.ReadLine());
+            if (board[position] == ' ') board[position] = letter;
+            else Console.WriteLine("place is already filled");
+
+            
         }
     }
 }
