@@ -12,9 +12,11 @@ namespace TicTacToe
             board = Createboard();
             Console.WriteLine("moving to choose x/o");
             char userletter = Choosexoro();
+            Console.WriteLine(userletter);
             Console.WriteLine("Printing board starting.....");
             PrintingTheBoard(board);
             Move(board, userletter);
+            PrintingTheBoard(board);
 
         }
 
@@ -31,8 +33,9 @@ namespace TicTacToe
 
         private static char Choosexoro()
         {
-            char userletter = Convert.ToChar(Console.ReadLine());
-            return userletter;
+            int chance = Toss();
+            if (chance == 1) return 'o';
+            else return 'x';
 
         }
 
@@ -51,11 +54,29 @@ namespace TicTacToe
 
         private static void Move(char[] board, char letter) 
         {
-            int position = Convert.ToInt32(Console.ReadLine());
-            if (board[position] == ' ') board[position] = letter;
-            else Console.WriteLine("place is already filled");
-
+            bool value_inserted = false;
+            while (value_inserted == false)
+            {
+                int position = Convert.ToInt32(Console.ReadLine());
+                if (0 < position && position < 10)
+                {
+                    if (board[position] == ' ')
+                    {
+                        board[position] = letter;
+                        value_inserted = true;
+                    }
+                    else Console.WriteLine("place is already filled or invalid position");
+                }
+            }
             
+        }
+
+        private static int Toss() 
+        {
+            Random random = new Random();
+            int chance = random.Next(1, 3);
+            return (chance);
+        
         }
     }
 }
