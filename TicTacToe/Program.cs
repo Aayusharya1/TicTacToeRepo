@@ -7,16 +7,16 @@ namespace TicTacToe
 
         static void Main(string[] args)
         {
-            char[] board;
 
-            board = Createboard();
+
+            char[] board = Createboard();
             Console.WriteLine("moving to choose x/o");
-            char userletter = Choosexoro();
-            Console.WriteLine(userletter);
+            char ch = Choosexoro();
+            Console.WriteLine(ch);
             Console.WriteLine("Printing board starting.....");
             PrintingTheBoard(board);
-            Move(board, userletter);
-            PrintingTheBoard(board);
+            Move(board, ch);
+            Console.WriteLine("Check if won " + IsWinner(board, ch));
 
         }
 
@@ -46,13 +46,13 @@ namespace TicTacToe
             for (int i = 1; i < 10; i++)
             {
                 Console.Write(board[i]);
-                Console.Write(" ");
+                Console.Write("|");
                 if (i % 3 == 0) Console.WriteLine("");
 
             }
         }
 
-        private static void Move(char[] board, char letter) 
+        private static void Move(char[] board, char letter)
         {
             bool value_inserted = false;
             while (value_inserted == false)
@@ -68,15 +68,29 @@ namespace TicTacToe
                     else Console.WriteLine("place is already filled or invalid position");
                 }
             }
-            
+
         }
 
-        private static int Toss() 
+        private static int Toss()
         {
             Random random = new Random();
             int chance = random.Next(1, 3);
             return (chance);
-        
+
+        }
+
+        private static bool IsWinner(char[] b, char ch)
+        {
+            return (
+                (b[1] == ch && b[2] == ch && b[3] == ch) ||
+                (b[4] == ch && b[5] == ch && b[6] == ch) ||
+                (b[7] == ch && b[8] == ch && b[9] == ch) ||
+                (b[1] == ch && b[4] == ch && b[7] == ch) ||
+                (b[2] == ch && b[5] == ch && b[8] == ch) ||
+                (b[3] == ch && b[6] == ch && b[9] == ch) ||
+                (b[1] == ch && b[5] == ch && b[9] == ch) ||
+                (b[7] == ch && b[5] == ch && b[3] == ch));
+
         }
     }
 }
