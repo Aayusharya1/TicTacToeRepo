@@ -15,8 +15,27 @@ namespace TicTacToe
             Console.WriteLine(ch);
             Console.WriteLine("Printing board starting.....");
             PrintingTheBoard(board);
-            Move(board, ch);
+            Move(board, 5, ch);
+            PrintingTheBoard(board);
+            int m = GetWinningMove(board, 'x');
+            Console.WriteLine("winning move is " + m);
+            Move(board, 2, ch);
+            PrintingTheBoard(board);
+            int l = GetWinningMove(board, 'x');
+            Console.WriteLine("winning move is " + l);
+            Move(board, 6, ch);
+            PrintingTheBoard(board);
+            int k = GetWinningMove(board, 'x');
+            Console.WriteLine("winning move is " + k);
+            Move(board, 8, ch);
+            PrintingTheBoard(board);
+            int j = GetWinningMove(board, 'x');
+            Console.WriteLine("winning move is " + j);
+            Move(board, 1, ch);
+            PrintingTheBoard(board);
             Console.WriteLine("Check if won " + IsWinner(board, ch));
+            int i = GetWinningMove(board, 'x');
+            Console.WriteLine("winning move is " + i);
 
         }
 
@@ -52,12 +71,12 @@ namespace TicTacToe
             }
         }
 
-        private static void Move(char[] board, char letter)
+        private static void Move(char[] board, int position, char letter)
         {
             bool value_inserted = false;
             while (value_inserted == false)
             {
-                int position = Convert.ToInt32(Console.ReadLine());
+              
                 if (0 < position && position < 10)
                 {
                     if (board[position] == ' ')
@@ -91,6 +110,31 @@ namespace TicTacToe
                 (b[1] == ch && b[5] == ch && b[9] == ch) ||
                 (b[7] == ch && b[5] == ch && b[3] == ch));
 
+        }
+
+        private static char[] BoardCopy(char[] board) 
+        {
+            char[] boardCopy = new char[10];
+            for (int i = 1; i < board.Length; i++)
+            {
+                boardCopy[i] = board[i];     
+            }
+            return boardCopy;
+            
+        }
+
+        private static int GetWinningMove(char[] board, char ch) 
+        {
+            for(int i =1; i< board.Length; i++) 
+            { if(board[i]==' ') 
+                {
+                    char[] boardCopy = BoardCopy(board);
+                    Move(boardCopy,i, ch);
+                    if (IsWinner(boardCopy,ch)) return i;
+
+                }
+            }
+            return 0;
         }
     }
 }
