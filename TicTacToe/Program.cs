@@ -12,6 +12,9 @@ namespace TicTacToe
             char[] board = Createboard();
             Console.WriteLine("moving to choose x/o");
             char ch = Choosexoro();
+            char comp_ch;
+            if (ch == 'x') comp_ch = 'o';
+            else comp_ch = 'x';
             Console.WriteLine(ch);
             Console.WriteLine("Printing board starting.....");
             PrintingTheBoard(board);
@@ -36,6 +39,8 @@ namespace TicTacToe
             Console.WriteLine("Check if won " + IsWinner(board, ch));
             int i = GetWinningMove(board, 'x');
             Console.WriteLine("winning move is " + i);
+
+            int comp_move = GetComputerMove(board, comp_ch, ch);
 
         }
 
@@ -134,6 +139,15 @@ namespace TicTacToe
 
                 }
             }
+            return 0;
+        }
+
+        private static int GetComputerMove(char[] board, char comp_ch, char ch) 
+        {
+            int comp_winning_move = GetWinningMove(board, comp_ch);
+            if (comp_winning_move != 0) return comp_winning_move;
+            int user_winning_move = GetWinningMove(board, ch);
+            if (user_winning_move != 0) return user_winning_move;
             return 0;
         }
     }
