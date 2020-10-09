@@ -160,6 +160,9 @@ namespace TicTacToe
             int[] corner_moves = {1,3,7,9 };
             int computer_move = getRandomMoveFromList(board, corner_moves);
             if (computer_move != 0) return computer_move;
+            if (board[5] == ' ') return 5;
+            int[] sideMoves = {2,4,6,8};
+            computer_move = getRandomMoveFromList(board, sideMoves);
             return 0;
         }
     }
