@@ -142,12 +142,24 @@ namespace TicTacToe
             return 0;
         }
 
+
+        private static int getRandomMoveFromList(char[] board, int [] moves) 
+        {
+        for(int i=0; i < moves.Length; i++) 
+            {
+                if (board[moves[i]] == ' ') return moves[i];
+            }
+            return 0;
+        }
         private static int GetComputerMove(char[] board, char comp_ch, char ch) 
         {
             int comp_winning_move = GetWinningMove(board, comp_ch);
             if (comp_winning_move != 0) return comp_winning_move;
             int user_winning_move = GetWinningMove(board, ch);
             if (user_winning_move != 0) return user_winning_move;
+            int[] corner_moves = {1,3,7,9 };
+            int computer_move = getRandomMoveFromList(board, corner_moves);
+            if (computer_move != 0) return computer_move;
             return 0;
         }
     }
